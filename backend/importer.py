@@ -41,7 +41,8 @@ def import_transactions(file_path, sheet_name, min_row, max_row):
                 transactions.append({
                     "date" : transaction_date,
                     "category": category,
-                    "amount" : Decimal(str(amount)).quantize(Decimal("0.01"))
+                    "amount" : Decimal(str(amount)).quantize(Decimal("0.01")),
+                    "source_cell": worksheet.cell(row=row_number, column=i+1).coordinate
                 }) 
     return transactions  
 
@@ -80,7 +81,8 @@ def import_income(file_path, sheet_name, min_row, max_row):
         income_transactions.append({
             "date": transaction_date,
             "category": "Income",
-            "amount": Decimal(str(amount)).quantize(Decimal("0.01"))
+            "amount": Decimal(str(amount)).quantize(Decimal("0.01")),
+            "source_cell": worksheet.cell(row=row_number, column=15).coordinate
         })
 
     return income_transactions   

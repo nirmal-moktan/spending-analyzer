@@ -1,0 +1,1 @@
+CREATE DATABASE spending_analyzer;

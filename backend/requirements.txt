@@ -1,2 +1,6 @@
 openpyxl
 pytest
+sqlalchemy
+psycopg[binary]
+python-dotenv
+alembic
