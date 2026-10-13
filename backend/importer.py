@@ -52,6 +52,7 @@ def import_income(file_path, sheet_name, min_row, max_row):
     formula_workbook = load_workbook(file_path, data_only=False)
 
     worksheet = workbook[sheet_name]
+    original_category = worksheet.cell(row=1, column=15).value
     formula_worksheet = formula_workbook[sheet_name]
 
     income_transactions = []
@@ -82,7 +83,8 @@ def import_income(file_path, sheet_name, min_row, max_row):
             "date": transaction_date,
             "category": "Income",
             "amount": Decimal(str(amount)).quantize(Decimal("0.01")),
-            "source_cell": worksheet.cell(row=row_number, column=15).coordinate
+            "source_cell": worksheet.cell(row=row_number, column=15).coordinate,
+            "original_category": original_category
         })
 
     return income_transactions   
